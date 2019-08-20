@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+import * as Types from "../variables/actionTypes";
+var initialState = {
+  list${2:${1/(.+)/\u$1/g}}: {},
+  ${1:${TM_FILENAME/\..*/$1/}}Detail: {}
+};
+
+const ${1}Reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case Types.GET_LIST${3:${1/(.)/\u$1/g}}:
+      return { ...state, list${2}: action.list${2} };
+    case Types.GET_${3}BYID:
+      return { ...state, ${1}Detail: action.${1}Detail };
+    default:
+      return state;
+  }
+};
+
+export default ${1}Reducer;
+
+]]></content>
+    <tabTrigger>q4</tabTrigger>
+    <scope>source.js</scope>
+    <description>Quick4: Create xxx.reducer.js</description>
+</snippet>

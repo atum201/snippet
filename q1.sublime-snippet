@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
+const ${1:${TM_FILENAME/\..*/$1/}}Schema = new Schema({
+	$1_id: String,
+
+	createdAt: Date
+});
+
+module.exports = mongoose.model('${2:${1/(.+)/\u$1/g}}', $1Schema);
+]]></content>
+    <tabTrigger>q1</tabTrigger>
+    <scope>source.js</scope>
+    <description>Quick1: Create xxx.model.js</description>
+</snippet>

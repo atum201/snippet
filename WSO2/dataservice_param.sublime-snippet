@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+<arg evaluator="xml" expression="get-property('$TM_CURRENT_WORD')"/>
+]]></content>
+</snippet>
+<!-- <param name="$TM_CURRENT_WORD" sqlType="STRING"/> -->
+<!-- <element column="$TM_CURRENT_WORD" name="$TM_CURRENT_WORD" xsdType="string"/> -->
+<!-- <with-param name="$TM_CURRENT_WORD" query-param="$TM_CURRENT_WORD"/> -->
+<!-- <property expression="//lgsp:$TM_CURRENT_WORD/text()" name="$TM_CURRENT_WORD" scope="default"/> -->
+<!-- <arg evaluator="xml" expression="get-property('full_name')"/> -->
+<!-- <lgsp:$TM_CURRENT_WORD>$1</lgsp:$TM_CURRENT_WORD> -->
+<!-- <arg evaluator="xml" expression="//*[name()='$TM_CURRENT_WORD']/text()"/> -->
+
+
+<!-- <filter xpath="fn:count(//lgsp:Citizen/lgsp:$TM_CURRENT_WORD)=0">
+    <then>
+        <property name="$TM_CURRENT_WORD" scope="default" type="STRING" value="NULL"/>
+    </then>
+    <else>
+        <property expression="fn:normalize-space(//lgsp:Citizen/lgsp:$TM_CURRENT_WORD/text())" name="$TM_CURRENT_WORD" scope="default"/>
+    </else>
+</filter> -->
+
+<!-- if $TM_CURRENT_WORD<>'NULL' then
+	if @v_sql_set = '' then
+	  set @v_sql_set =  concat('`$TM_CURRENT_WORD`=\'',$TM_CURRENT_WORD,'\'');
+	else 
+	  set @v_sql_set =  concat(', `$TM_CURRENT_WORD`=\'',$TM_CURRENT_WORD,'\'');
+	end if;
+end if; -->

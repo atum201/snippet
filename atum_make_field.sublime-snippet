@@ -1,0 +1,35 @@
+<snippet>
+    <content><![CDATA[
+{
+	name:"",
+	title:"",
+	type:"",//dropdownlist|date|datetime|choice|checkbox|password|confirmpassword|image|select|range
+	attr:{},
+	style:{},
+	condition:{
+		required:"Dữ liệu trống",
+		lMin:6,
+		lMax:200,
+		nMin:10,
+		nMax:100,
+		tMin:{},
+		tMax:{},
+		vEmail:"Email không hợp lệ",
+		vPhone:"Điện thoại không hợp lệ",
+		vText:"Dữ liệu không hợp lệ",
+		vNumber:"Số không hợp lệ",
+		vRegex:"Dữ liệu không hợp lệ"
+	}, 
+	option:{ 
+		autocomplate:"url?key=?",
+		dateformat:"",
+		checkremote:"url?key=?&params",
+		datasource:"url?params=?? || {} || []",
+		default:""
+	}
+}
+]]></content>
+    <tabTrigger>amk</tabTrigger>
+    <scope>source.js meta.group.braces.curly -(meta meta meta)</scope>
+    <description>Atum: make field</description>
+</snippet>

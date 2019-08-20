@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+{
+	metadata:[
+
+	],
+	option:{checkremote:"url"},
+ 	data:{}
+}
+
+]]></content>
+    <tabTrigger>amt</tabTrigger>
+    <scope>source.js -(meta)</scope>
+    <description>Atum: make template</description>
+</snippet>
