@@ -6,17 +6,17 @@ const ${3:${2:${1/(.+)/\u$1/g}}Controller} = require('../controllers/${1:${TM_FI
 
 router.get('/list', $3.getList);
 
-router.get('/detail/:${1}_id', $3.getDetail);
+router.get('/:${1}_id', $3.getDetail);
 
 router.post('/', $3.create);
 
 router.put('/:${1}_id', $3.edit);
 
-router.delete('/:${1}_id', $3.remove);
+router.delete('/delete/:${1}_id', $3.remove);
 
 module.exports = router;
 ]]></content>
     <tabTrigger>q2</tabTrigger>
     <scope>source.js</scope>
-    <description>Quick2: Create xxx.controller.js</description>
+    <description>Quick 2: Create routes/xxx.route.js</description>
 </snippet>

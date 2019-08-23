@@ -10,21 +10,33 @@ const { searchingQueries, pagingOptions } = require('../helpers/paginate.helper'
 // const pathRedirect = '/exports/results/';
 
 module.exports.getList = (req, res) => {
-    // const { status } = req.query;
+    let add = {};
+    let remove = {};
 
-    let query = {};
     // if (status == 'all')
-    //     input.status = { $ne: null };
-    // else if (status)
-    //     input.status = status;
+    //     add.status = { $in: ['WIN', 'LOSE'] };
+    // else if (status == 'WIN')
+    //     add.status = 'WIN';
+    // else if (status == 'LOSE')
+    //     add.status = 'LOSE';
+    // else
+    //     return responseError(res, 404, 'STATUS_NOT_FOUND');
 
-    $2.find(query).sort({ createdAt: 'asc' }).then(list => responseOk(res, list))
-        .catch(error => responseError(res, 500, error.message));
+
+    return $2.paginate(searchingQueries(req, [], { add, remove }),
+        pagingOptions(req))
+        .then(results => {
+            responseOk(res, results);
+        })
+        .catch(error => {
+            console.log(error.message);
+            responseError(res, 500, error.message);
+        });
 }
 
 module.exports.getDetail = async (req, res) => {
-    const { id } = req.params;
-    return $2.findById(id)
+    const { $1_id } = req.params;
+    return $2.findOne({$1_id})
         .then(item => {
             if (!item)
                 return responseError(res, 404, '${3:${1/(.)/\u$1/g}}_NOT_FOUND');
@@ -131,15 +143,15 @@ module.exports.remove = (req, res) => {
         if (!$1)
             return responseError(res, 404, '$3_NOT_FOUND');
 
-        await Result.deleteMany({ $1_id });
-        // await Question.deleteMany({ $1_id });
-        // await Game.deleteOne({ game_id });
+        // await Result.deleteMany({ banner_id });
+        await $2.deleteOne({ $1_id });
         responseOk(res, { success: true, message: 'ok' });
+
     })
         .catch(error => responseError(res, 500, error.message));
 }
 ]]></content>
     <tabTrigger>q3</tabTrigger>
     <scope>source.js</scope>
-    <description>Quick3: Create xxx.controller.js</description>
+    <description>Quick 3: Create controllers/xxx.controller.js</description>
 </snippet>
