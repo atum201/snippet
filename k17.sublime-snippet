@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+import ${1:${SELECTION/(.+)/\u$1/g}}Page from "views/AdminPage/${1}Page/${1}Page.jsx";
+import ${1}Create from "views/AdminPage/${1}Page/${1}Create.jsx";
+
+]]></content>
+    <tabTrigger>k17</tabTrigger>
+    <scope>source.js</scope>
+</snippet>

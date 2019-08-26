@@ -11,7 +11,7 @@ const ${1:${TM_FILENAME/\..*/$1/}}Schema = new Schema({
 
 module.exports = mongoose.model('${2:${1/(.+)/\u$1/g}}', $1Schema);
 ]]></content>
-    <tabTrigger>q1</tabTrigger>
+    <tabTrigger>q11</tabTrigger>
     <scope>source.js</scope>
-    <description>Quick1: Create xxx.model.js</description>
+    <description>Backend: models/xxx.model.js</description>
 </snippet>

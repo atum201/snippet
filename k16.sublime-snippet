@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+export const GET_${1:${SELECTION/(.)/\u$1/g}}BYID = "GET_${1}BYID";
+export const GET_LIST${1} = "GET_LIST${1}";
+export const DELETE_${1} = "DELETE_${1}";
+]]></content>
+    <tabTrigger>k16</tabTrigger>
+    <scope>source.js</scope>
+</snippet>

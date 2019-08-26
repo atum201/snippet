@@ -1,6 +1,7 @@
 <snippet>
     <content><![CDATA[
 const ${2:${1/(.+)/\u$1/g}} = require('../models/${1:${TM_FILENAME/\..*/$1/}}.model');
+const Seq = require('../models/seq.model')
 const { responseOk, responseError } = require('../helpers/paginate.helper');
 const { searchingQueries, pagingOptions } = require('../helpers/paginate.helper');
 // const moment = require('moment');
@@ -52,14 +53,14 @@ module.exports.create = async (req, res) => {
     $2.init().then(async () => {
 
         let { body } = req;
-        const $1_id = Math.ceil(Math.random() * 100000);
-
-        // if (moment() > moment(body.start_date))
-        //     return responseError(res, 409, 'START_DATE_INVALID');
-
-        const $1 = await $2.findOne({ $1_id });
-        if ($1)
-            return responseError(res, 409, '$3_ID_IS_EXISTED');
+        let ${1}_id = 1;
+        const seq = await Seq.findOne({ 'seq_id':1 }).select('${1}');
+        if(!seq){
+            const s = new Seq({'seq_id':1});
+            s.save();
+        }else{
+            ${1}_id = ++seq['${1}'];
+        }
 
         const collection = new $2({
             ...body,
@@ -73,7 +74,7 @@ module.exports.create = async (req, res) => {
                 data = data.toJSON({
                     list: true
                 });
-
+                Seq.findOneAndUpdate({ 'seq_id':1 }, {'${1}':${1}_id}).exec();
                 responseOk(res, data);
             }).catch(err => {
                 responseError(
@@ -151,7 +152,7 @@ module.exports.remove = (req, res) => {
         .catch(error => responseError(res, 500, error.message));
 }
 ]]></content>
-    <tabTrigger>q3</tabTrigger>
+    <tabTrigger>q13</tabTrigger>
     <scope>source.js</scope>
-    <description>Quick 3: Create controllers/xxx.controller.js</description>
+    <description>Backend: controllers/xxx.controller.js</description>
 </snippet>

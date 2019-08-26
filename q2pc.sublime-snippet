@@ -1,0 +1,255 @@
+<snippet>
+    <content><![CDATA[
+import React, { Component } from "react";
+import {
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardBody,
+  CardFooter,
+  Label,
+  Input
+} from "reactstrap";
+import { PanelHeader, MaterialInputText, Button } from "components";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { validateNumberBonus } from "../../../utils/validateNumberX";
+import { actGet${2:${TM_FILENAME/Create.jsx//g}}ByID, actUpdate${2}Request, actCreate${2}Request } from "../../../actions/${1:${2/(.)/\l$1/}}.action";
+import DateFnsUtils from "@date-io/date-fns";
+import viLocale from "date-fns/locale/vi";
+import PropTypes from "prop-types";
+import { Editor } from '@tinymce/tinymce-react';
+import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
+import callApi from "utils/callApiCms";
+
+class ${2}Create extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      createdAt: new Date(),
+      ${1}create: [
+        
+      ],
+      isEdit: window.location.pathname.split("/admin-page/")[1] === "sua-${1}/" + this.props.match.params.${1}_id
+    };
+
+  }
+
+
+  componentDidMount() {
+    if (this.state.isEdit === true) {
+      this.props.getList${2}ID(this.props.match.params.${1}_id);
+    }
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.state.isEdit === true) {
+      if (nextProps.list${2}Detail && nextProps.list${2}Detail.data) {
+        this.set${2}Edit(nextProps.list${2}Detail.data);
+        this.setState({
+          createdAt:nextProps.list${2}Detail.data.createdAt
+        })
+      }
+    }
+  }
+
+  set${2}Edit = ${1}detail => {
+    const { ${1}create } = this.state;
+    ${1}create.map(prop => {
+      prop.value = ${1}detail[prop.name];
+      return null;
+    });
+  }
+
+  handleOnChange = e => {
+    const {${1}create,image} = this.state;
+
+    ${1}create.map(prop => {
+      if (prop.name === e.target.name) {
+        prop.value = e.target.value;
+        prop.error = false;
+        prop.errorMessage = "";
+        return prop;
+      }
+      return prop;
+    });
+    this.setState({
+      ${1}create
+    });
+    
+  }
+
+  validate = () => {
+    const ${1}create = this.state.${1}create;
+    ${1}create.map(prop => {
+      // if (prop.name === "bonus" && !validateNumberBonus(prop.value)) {
+      //   prop.error = true;
+      //   prop.errorMessage = "Thông tin không hợp lệ (bắt buộc phải là số).";
+      //   this.setState({ ${1}create });
+      // } else 
+      if (prop.value === "" && prop.value === "."  ) {
+        prop.error = true;
+        prop.errorMessage = "Vui lòng điền thông tin.";
+        this.setState({ ${1}create });
+      }
+      return null;
+    });
+    const result = ${1}create.filter(${1}create => ${1}create.error === true);
+    if (result.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  handleOnSubmit = () => {
+    var isValid = this.validate();
+    
+
+
+    const { ${1}create,createdAt } = this.state;
+    if (isValid) {
+      if (this.state.isEdit === true) {
+        this.props.update${2}Request(
+          this.props.match.params.${1}_id,
+          ...${1}create.map(a => a.value),
+          createdAt
+        );
+      } else {
+        this.props.create${2}Request(
+          ...${1}create.map(a => a.value),
+          createdAt
+        );
+      }
+
+    }
+  }
+  _handleOnChangeDatestart = date => {
+    // let convertD = formatStringToTime(date);
+    this.setState({
+      createdAt: new Date(date)
+    });
+  };
+  render() {
+    const { ${1}create, isEdit, createdAt } = this.state;
+    return (
+      <div>
+        {this.state.alert}
+        <PanelHeader size="sm" />
+        <div className="content ">
+          <Row>
+            <Col md="7" xs="12" className="m-auto">
+              <Card className="card-staff card-form-staff card-announcement-new">
+                <CardHeader>
+                  <Row>
+                    <Col md="8" xs="9">
+                      <CardTitle type="h5">{isEdit === true ? "Chỉnh sửa ${1}" : "Thêm ${1} mới"}</CardTitle>
+                    </Col>
+                  </Row>
+                </CardHeader>
+                <CardBody>
+
+                  <Row>
+                    <Col md="12">
+                      <MaterialInputText
+                        onChange={this.handleOnChange}
+                        error={${1}create[0].error}
+                        errorMessage={${1}create[0].errorMessage}
+                        name='name'
+                        value={${1}create[0].value}
+                        label="Tên" />
+                    </Col>
+                  </Row>
+                  
+                  <Row className="mt-3">
+                    <Col md="12">
+                      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={viLocale}>
+                        <div className="picker">
+                          <DateTimePicker
+                            value={createdAt}
+                            disablePast
+                            ampm={false}
+                            onChange={this._handleOnChangeDatestart}
+                            label="Thời gian bắt đầu"
+                            showTodayButton
+                            format="yyyy/MM/dd hh:mm"
+                          />
+                        </div>
+                      </MuiPickersUtilsProvider>
+                    </Col>
+                  </Row>
+                </CardBody>
+                <CardFooter className="text-center">
+                  <Row>
+
+                    <Col md="12" className="text-right ">
+                      <Link to="/admin-page/danh-sach-${1}/">
+                        <Button className="btnExit" simple color="danger" style={{ width: "150px" }}>
+                          <i className="fas fa-times" /> Thoát
+                                    </Button>
+                      </Link>
+                      <Button className="btnSave ml-2" simple color="success" onClick={this.handleOnSubmit} style={{ width: "150px" }}>
+                        <i className="fas fa-check" />{isEdit === true ? "Cập nhật" : "Lưu"}
+                      </Button>
+
+                    </Col>
+                  </Row>
+                </CardFooter>
+              </Card>
+            </Col>
+          </Row>
+
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    list${2}Detail: state.${1}Reducer.${1}Detail,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    create${2}Request: (
+      
+    ) => {
+      dispatch(
+        actCreate${2}Request(
+          
+        )
+      );
+    },
+    update${2}Request: (
+      ${1}_id, name, code, link, img, createdAt
+    ) => {
+      dispatch(
+        actUpdate${2}Request(
+          ${1}_id, name, code, link, img, createdAt
+        )
+      );
+    },
+    getList${2}ID: (id) => {
+      dispatch(
+        actGet${2}ByID(id)
+      );
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(${2}Create);
+${2}Create.propTypes = {
+  ${1}create: PropTypes.object
+};
+]]></content>
+    <tabTrigger>q2pc</tabTrigger>
+    <scope>source.js</scope>
+    <description>React/Views: AdminPage  xxxCreate.jsx</description>
+</snippet>

@@ -1,0 +1,84 @@
+banner
+enterprise
+event
+fact
+news
+video
+account
+register
+
+// banner
+banner_id
+name
+code
+link
+img
+status
+createdAt
+
+// enterprise
+enterprise_id
+name
+user_id
+icon
+address
+phone
+email
+introdution
+createdAt
+status
+
+// event
+event_id
+name
+avatar
+description
+start_register
+end_register
+start_date
+end_date
+createdAt
+status
+
+// fact
+fact_id
+name
+number
+description
+createdAt
+status
+
+// news
+news_id
+enterprise_id
+title
+avatar
+description
+content
+author
+createdAt
+status
+// video
+video_id
+name
+link
+img
+creater
+status
+createdAt
+
+// account
+account
+password
+role
+fullname
+mail
+mobile
+createdAt
+
+//register
+event_id
+fullname
+mail
+mobile
+createdAt

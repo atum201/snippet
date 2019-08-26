@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+
+{
+  name: "$SELECTION",
+  value: "",
+  error: false,
+  errorMessage: ""
+}
+]]></content>
+    <tabTrigger>k12</tabTrigger>
+    <scope>source.js</scope>
+</snippet>

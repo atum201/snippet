@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[
+{ type: $SELECTION, default: 1 }
+]]></content>
+    <tabTrigger>k15</tabTrigger>
+    <scope>source.js</scope>
+</snippet>

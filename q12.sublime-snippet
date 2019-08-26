@@ -16,7 +16,7 @@ router.delete('/delete/:${1}_id', $3.remove);
 
 module.exports = router;
 ]]></content>
-    <tabTrigger>q2</tabTrigger>
+    <tabTrigger>q12</tabTrigger>
     <scope>source.js</scope>
-    <description>Quick 2: Create routes/xxx.route.js</description>
+    <description>Backend: routes/xxx.route.js</description>
 </snippet>

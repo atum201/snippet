@@ -12,6 +12,8 @@ const ${1}Reducer = (state = initialState, action) => {
       return { ...state, list${2}: action.list${2} };
     case Types.GET_${3}BYID:
       return { ...state, ${1}Detail: action.${1}Detail };
+    case Types.DELETE_${3}:
+      return {list${2}: state.list${2}.filter(x=>x.${1}_id !== action.${1}_id)};
     default:
       return state;
   }
@@ -20,7 +22,7 @@ const ${1}Reducer = (state = initialState, action) => {
 export default ${1}Reducer;
 
 ]]></content>
-    <tabTrigger>q4</tabTrigger>
+    <tabTrigger>q22</tabTrigger>
     <scope>source.js</scope>
-    <description>Quick4: Create xxx.reducer.js</description>
+    <description>React/Redux: reducers/xxx.reducer.js</description>
 </snippet>

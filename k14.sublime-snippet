@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[
+${1:${SELECTION/\n/, /g}}
+]]></content>
+    <tabTrigger>k14</tabTrigger>
+    <scope>source.js</scope>
+</snippet>

@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[
+import ${SELECTION}Reducer from "./${SELECTION}.reducer";
+]]></content>
+    <tabTrigger>k13</tabTrigger>
+    <scope>source.js</scope>
+</snippet>

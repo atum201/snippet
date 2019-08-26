@@ -1,0 +1,29 @@
+<snippet>
+    <content><![CDATA[
+//${2:${SELECTION/(.+)/\u$1/g}}
+{
+	path: "/admin-page/danh-sach-${1:${SELECTION}}",
+	name: "Danh sách ${1}",
+	icon: "fas fa-image",
+	component: ${2}Page
+},
+{
+	path: "/admin-page/sua-${1}/:${1}_id",
+	name: "Sửa ${1}",
+	icon: "fas fa-image",
+	invisible: true,
+	exact: true,
+	component: ${2}Create
+},
+{
+  path: "/admin-page/them-${1}",
+  name: "Thêm ${1}",
+  icon: "fas fa-user-plus",
+  invisible: true,
+  exact: true,
+  component: ${2}Create
+},
+]]></content>
+    <tabTrigger>k17</tabTrigger>
+    <scope>source.js</scope>
+</snippet>
