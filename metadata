@@ -58,6 +58,7 @@ content
 author
 createdAt
 status
+read
 
 // video
 video_id

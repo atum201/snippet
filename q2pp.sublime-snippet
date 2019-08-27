@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardBody,
   CardTitle,
+  CardFooter,
   Table,
   Col,
   Row
@@ -21,6 +22,8 @@ import { formatStringToTime } from "../../../utils/formatDate";
 import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import getUrlParam from "utils/getUrlParam";
+import Pagination from "../../../components/Pagination/Pagination";
 // import { socketGlobal } from "../../../utils/instanceSocket";
 import renderStatus from "../../../utils/renderBookingStatus.jsx";
 import { renderErrorSever } from "../../../utils/renderError";
@@ -32,14 +35,21 @@ class ${2}Page extends Component {
     super(props);
     this.state = {
       alert: "",
-      openning: false
+      openning: false,
+      page:1
     };
+    this.getList${2}Pagging = this.getList${2}Pagging.bind(this);
   }
   componentDidMount() {
-    this.getList${2}();
+    const page = getUrlParam()["page"];
+    this.getList${2}({page});
   }
-  getList${2}() {
-    this.props.getList${2}();
+  getList${2}Pagging(value) {
+    const page = value;
+    this.getList${2}({page});
+  }
+  getList${2}(query) {
+    this.props.getList${2}(query);
   }
   _showError(messageErrorSV) {
     this.setState({
@@ -57,7 +67,8 @@ class ${2}Page extends Component {
     this.props.delete${2}(e);
   }
   _hideAlert(){
-    this.props.getList${2}();
+    const page = getUrlParam()["page"];
+    this.props.getList${2}({page});
     this.setState({ alert: "" });
   };
   render() {
@@ -160,8 +171,8 @@ class ${2}Page extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  { list${2}s && Object.keys(list${2}s).length > 0 &&
-                    list${2}s.map((props, key) => {
+                  { list${2}s.data && Object.keys(list${2}s).length > 0 &&
+                    list${2}s.data.docs.map((props, key) => {
                       return (
                         <tr key={key}>
                           <td>{props.name}</td>
@@ -186,6 +197,13 @@ class ${2}Page extends Component {
                 </tbody>
               </Table>
             </CardBody>
+            <CardFooter className="text-right">
+              <Pagination
+                page={list${2}s.data ? list${2}s.data.page : 1}
+                totalPages={list${2}s.data ? list${2}s.data.totalPages : 1}
+                getListByPage={this.getList${2}Pagging}
+              />
+            </CardFooter>
           </Card>
         </div>
       </div>
@@ -200,8 +218,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getList${2}: () => {
-      dispatch(actGetList${2}());
+    getList${2}: (query) => {
+      dispatch(actGetList${2}(query));
     },
     delete${2}: (${4}_id)=>{
       dispatch(actDelete${2}Request(${4}_id));

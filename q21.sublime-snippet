@@ -81,10 +81,14 @@ export const actGet${2}IDDp = ${4}Detail => {
 };
 
 //getList${2}
-export const actGetList${2} = () => {
+export const actGetList${2} = (query) => {
+  if(!query)
+    query = {page:1}
   return dispatch => {
-    return callApiCms(`${4}/list`, "GET").then(res => {
-      dispatch(actGetList${2}Dp(res.data.docs));
+    return callApiCms(`${4}/list?\${Object.keys(query).map(function(data){
+        return `\${data}=\${query[data]}`;
+    }).join('&')}`, "GET").then(res => {
+      dispatch(actGetList${2}Dp(res));
     });
   };
 };
