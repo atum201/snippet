@@ -1,0 +1,29 @@
+<snippet>
+    <content><![CDATA[
+public ICommand Open$1 { get; private set; }
+Open$1 = new RelayCommand(open$1);
+
+
+private void open$1()
+    {
+        var window = Application.Current.Windows.OfType<$1>().FirstOrDefault();
+        if (window == null)
+        {
+            window = new $1();
+            window.Closed += (sender, args) => { CloseOrNot(); };
+
+            window.Show();
+        }
+        else
+        {
+            if (window.WindowState == WindowState.Minimized)
+                window.WindowState = WindowState.Normal;
+
+            window.Activate();
+        }
+    }
+]]></content>
+    <tabTrigger>ioio1</tabTrigger>
+    <scope>text.plain;source.cs</scope>
+    <description>WPF ioio: Create Open Window Command</description>
+</snippet>
