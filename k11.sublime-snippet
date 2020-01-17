@@ -1,6 +1,14 @@
 <snippet>
     <content><![CDATA[
-\${$1}
+public string Select${1:$SELECTION}
+        {
+            get => Constant.$1[_setting.$1.Value];
+            set => Set(ref _setting.$1, Constant.$1.IndexOf(value)); 
+        }
+        public List<String> $1
+        {
+            get => Constant.$1;
+        }
 ]]></content>
     <tabTrigger>k11</tabTrigger>
     <scope>source.js</scope>
