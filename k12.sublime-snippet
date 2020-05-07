@@ -1,13 +1,7 @@
 <snippet>
     <content><![CDATA[
-
-{
-  name: "$SELECTION",
-  value: "",
-  error: false,
-  errorMessage: ""
-}
+\$stringEscapeUtils.escapeHtml4($SELECTION)
 ]]></content>
     <tabTrigger>k12</tabTrigger>
-    <scope>source.js</scope>
+    <scope>text.html</scope>
 </snippet>
