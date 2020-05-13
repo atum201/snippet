@@ -1,0 +1,9 @@
+{
+        "scope": "source.js",
+
+        "completions":
+        [
+        	
+                { "trigger": "test funtion", "contents": "function function_name(argument) {\n	alert some thing\n	console.log(1212)\n}" }
+        ]
+}

@@ -3,8 +3,17 @@
 
         "completions":
         [
-                { "trigger": "insert", "contents": "INSERT INTO table_name$1 (column1), VALUES (value1);" },
+        	// SQL
+                { "trigger": "insert SQL", "contents": "INSERT INTO table_name$1 (column1), VALUES (value1);","description":"Insert SQL" },
                 { "trigger": "update", "contents": "UPDATE table_name$1 SET column1 = value1, column2 = value2 WHERE condition;" },
-                { "trigger": "delete", "contents": "DELETE FROM table_name$1 WHERE condition;" }
+                { "trigger": "delete", "contents": "DELETE FROM [$1] WHERE condition;" },
+                { "trigger": "alter add column", "contents": "ALTER TABLE $1 ADD Name varchar(255);" },
+            // ORACLE
+                { "trigger": "alter column oracle", "contents": "ALTER TABLE [$1] \nMODIFY [COLUMN] [TYPE];" },
+                { "trigger": "alter add primary key oracle", "contents": "ALTER TABLE $1 ADD CONSTRAINT $1_PK PRIMARY KEY (ID);" },
+                { "trigger": "select all table name oracle", "contents": "SELECT OBJECT_NAME FROM USER_OBJECTS WHERE OBJECT_TYPE='TABLE';" }
+
         ]
 }
+
+// { "trigger": "delete", "contents": "ALTER TABLE $1 \nMODIFY [COLUMN] [TYPE];" }

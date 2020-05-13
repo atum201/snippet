@@ -3,8 +3,9 @@
 
         "completions":
         [
-                { "trigger": "ps", "contents": "ps aux | grep java" },
+                { "trigger": "ps aux | grep java", "contents": "ps aux | grep java" },
                 { "trigger": "update", "contents": "UPDATE table_name$1 SET column1 = value1, column2 = value2 WHERE condition;" },
+                { "trigger": "test funtion", "contents": "function function_name(argument) {\n	alert some thing\n	console.log(1212)\n}" },
                 { "trigger": "delete", "contents": "DELETE FROM table_name$1 WHERE condition;" }
         ]
 }

@@ -1,0 +1,8 @@
+{
+        "scope": "text.plain",
+
+        "completions":
+        [
+        	{ "trigger": "nihon phó từ", "contents": "Phó từ:\nきっと： nhất định, chắc chắn, chắc hẳn - Phán đoán chủ quan của người nói.\n	- 彼女　は　きっと　疲れたのだろう　（つかれた）\n是非　（ぜひ）： nhất định - Chỉ dùng thể khẳng định, Phán đoán khách quan của người nói. Thể hiện mong muốn của người nói muốn người nghe thực hiện.\n必ず	（かならず）： nhất định - giống với ぜひ. 2 từ này thể hiện tính quyết tâm cao hơn( khách quan)\n絶対に　（絶対）に： tuyệt đối - dùng đc cả trong thể phủ định và khảng định" }
+        ]
+}
