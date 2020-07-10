@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[
-${1:${SELECTION/\n/, /g}}
+\${n.i18n.$SELECTION}
 ]]></content>
     <tabTrigger>k11</tabTrigger>
     <scope>source.js</scope>

@@ -1,7 +1,9 @@
 <snippet>
     <content><![CDATA[
-{ "trigger": "$1", "contents": "${2:${SELECTION/\n/\\n/g}}" },
+{ "trigger": "$1", "contents": "${3:${2/"/\\\"/g:${SELECTION/\n/\\n/g}}}" },
 ]]></content>
     <tabTrigger>k12</tabTrigger>
     <scope>text.html</scope>
 </snippet>
+<!-- { "trigger": "$1", "contents": "${3:${2/"/\\\"/g:${SELECTION/\n/\\n/g}}}" }, -->
+<!-- { "trigger": "$1", "contents": "${2:${SELECTION/\n/\\n/g}}" }, -->

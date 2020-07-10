@@ -1,6 +1,8 @@
 <snippet>
     <content><![CDATA[
-${1:${SELECTION/\n/, /g}}
+\$("#$SELECTION").data('bootstrapValidator').resetForm();
+\$("#$SELECTION").bootstrapValidator('validate');
+if (\$("#$SELECTION").has('.has-error').length > 0) return;
 ]]></content>
     <tabTrigger>k14</tabTrigger>
     <scope>source.js</scope>

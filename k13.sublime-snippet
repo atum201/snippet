@@ -1,6 +1,22 @@
 <snippet>
     <content><![CDATA[
-import ${SELECTION}Reducer from "./${SELECTION}.reducer";
+CREATE TABLE "DANCUDEV"."COMM_CAT_${SELECTION}" 
+   (
+   "ID" NUMBER NOT NULL ENABLE, 
+   "${SELECTION}_ID" VARCHAR2(100), 
+	"${SELECTION}_VI_NAME" VARCHAR2(200), 
+	"${SELECTION}_EN_NAME" VARCHAR2(200),
+	"${SELECTION}_SHORT_NAME" VARCHAR2(200),
+	"STATUS" NUMBER(1,0),
+	CONSTRAINT COMM_CAT_${SELECTION}_PK PRIMARY KEY (ID)
+   ) ;
+
+ CREATE SEQUENCE COMM_CAT_${SELECTION}_SEQ
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+
 ]]></content>
     <tabTrigger>k13</tabTrigger>
     <scope>source.js</scope>

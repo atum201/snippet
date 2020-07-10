@@ -1,0 +1,9 @@
+{
+    "scope": "text.html(.basic)",
+
+    "completions":
+    [
+    	{ "trigger": "danhmucdungchung btn", "contents": "<div class=\"box\">\n    <div class=\"box-body\" style=\"text-align: right;\">\n        <button class=\"btn btnSearchUI\" id=\"btnSearchUI\"><span class=\"icon -ap icon-search\"></span> Tìm kiếm</button>\n        <button class=\"btn btnViewUI\" id=\"btnViewUI\"><span class=\"icon -ap icon-list2\"></span> Xem</button>\n        <button class=\"btn btnInsertUI\" id=\"btnInsertUI\"><span class=\"icon -ap icon-add\"></span> Thêm mới</button>\n        <button class=\"btn btnEditUI\" id=\"btnEditUI\"><span class=\"icon -ap icon-mode_edit\"></span> Sửa</button>\n        <button class=\"btn btnDeleteUI\" id=\"btnDeleteUI\"><span class=\"icon -ap icon-delete\"></span> Xóa</button>\n        <button class=\"btn btnDownloadUI\" id=\"btnDownloadUI\"><span class=\"icon -ap icon-download\"></span> Kiết xuất</button>\n    </div>\n</div>" },
+        { "trigger": "test funtion", "contents": "function function_name(argument) {\n	alert some thing\n	console.log(1212)\n}" }
+    ]
+}

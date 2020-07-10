@@ -1,6 +1,11 @@
 <snippet>
     <content><![CDATA[
-{ type: $SELECTION, default: 1 }
+private string ${1:_$SELECTION};
+public string ${2:${SELECTION/(.+)/\u$1/g}}
+{
+    get => $1;
+    set { $1 = value; }
+}
 ]]></content>
     <tabTrigger>k15</tabTrigger>
     <scope>source.js</scope>

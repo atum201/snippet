@@ -7,5 +7,6 @@
   { "keys": ["ctrl+6"], "command": "insert_snippet", "args": {"name": "Packages/snippet/k16.sublime-snippet"} },
   { "keys": ["ctrl+7"], "command": "insert_snippet", "args": {"name": "Packages/snippet/k17.sublime-snippet"} },
   { "keys": ["ctrl+8"], "command": "insert_snippet", "args": {"name": "Packages/snippet/k18.sublime-snippet"} },
-  { "keys": ["ctrl+9"], "command": "insert_snippet", "args": {"name": "Packages/snippet/k19.sublime-snippet"} }
+  { "keys": ["ctrl+9"], "command": "insert_snippet", "args": {"name": "Packages/snippet/k19.sublime-snippet"} },
+  { "keys": ["ctrl+0"], "command": "insert_snippet", "args": {"name": "Packages/snippet/k10.sublime-snippet"} },
 ]

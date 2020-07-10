@@ -1,29 +1,111 @@
 <snippet>
     <content><![CDATA[
-//${2:${SELECTION/(.+)/\u$1/g}}
-{
-	path: "/admin-page/danh-sach-${1:${SELECTION}}",
-	name: "Danh sách ${1}",
-	icon: "fas fa-image",
-	component: ${2}Page
-},
-{
-	path: "/admin-page/sua-${1}/:${1}_id",
-	name: "Sửa ${1}",
-	icon: "fas fa-image",
-	invisible: true,
-	exact: true,
-	component: ${2}Create
-},
-{
-  path: "/admin-page/them-${1}",
-  name: "Thêm ${1}",
-  icon: "fas fa-user-plus",
-  invisible: true,
-  exact: true,
-  component: ${2}Create
-},
+<div class="box-legend">
+    <div class="legend-title">
+        <span>Kết quả tìm kiếm</span>
+    </div>
+    <div class="box-form-result" id='dgvQuocGia' style="overflow:auto;margin:auto"></div>
+</div>
+<script type="text/javascript">
+	initApiService();
+    var data = [];
+    \$(document).ready(function () {
+        reloadGrid();
+    });
+    //
+    window.operateEvents = {
+        'click .viewHoSo': function (e, value, row, index) {
+            editfunctions(row.LOG_ID);
+        },
+        'click .editMenu': function (e, value, row, index) {
+            editfunctions(row.LOG_ID);
+        },
+        'click .delMenu': function (e, value, row, index) {
+            deletefunctions(row.LOG_ID);
+        }
+    };
+
+    //
+    var _columns = [{field: '${SELECTION}_id', title: 'STT', sortable: false, align: 'center', width: '10px'},
+    	{field: '', checkbox: true, align: 'center', valign: 'middle', width: '10px'},
+        {field: '${SELECTION}_code', title: 'Mã ngành', sortable: false, align: 'center', width: '100px'},
+        {field: '${SELECTION}_name', title: 'Tên ngành', sortable: false, align: 'center', width: '200px'},
+        {field: '${SELECTION}_group', title: 'Nhóm ngành', sortable: false, align: 'center', width: '200px'},
+        {field: 'status', title: 'Trạng thái sử dụng', sortable: false, align: 'center', width: '100px'},
+        {
+            field: 'operate', title: 'Thao tác', sortable: false, align: 'center', width: '50px', clickToSelect: false,
+            formatter: operateFormatter, events: window.operateEvents
+        }]
+
+    //
+    function operateFormatter(value, row, index) {
+        var _viedHoso = '<a rel="tooltip" title="Xem hồ sơ" class="viewHoSo"><i class="fa fa-eye"></i></a>';
+        var _editChild = '<a rel="tooltip" title="Sửa" class="editMenu"><i class="fa fa-edit"></i></a>';
+        var _delAll = '<a rel="tooltip" title="Xóa" class="delMenu"><i class="fa fa-times"></i></a>';
+        var _ret = "";
+        return [_viedHoso, _editChild, _delAll].join('');
+    }
+
+    get_query_params = function (p) {
+        var _otherParam = new Object();
+        _otherParam.provider = "g";
+        //load du lieu form to object json
+        FormUtil.setFormToObject('as_dic_${SELECTION}Read', '', _otherParam);
+        //
+        var encodedString = Base64.encode(JSON.stringify(_otherParam));
+        return {
+            limit: p.limit,
+            offset: p.offset,
+            service: "api_category_select",
+            other: encodedString
+        }
+    }
+
+    function reloadGrid() {
+        \$('#dgvQuocGia').bootstrapTable('destroy').bootstrapTable({
+            url: '/web/paging.jsp',
+            idField: "${SELECTION}_id",
+            columns: _columns,
+            pageSize: 1,
+            pageList: [1, 2, 3],
+            pagination: true,
+            sidePagination: 'server',
+            queryParams: 'get_query_params',
+            // data: data,
+            clickToSelect: true,
+            singleSelect: false
+        }).on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table uncheck-all.bs.table',
+            function () {
+                obj = new Object();
+                obj.SELECTED = \$('#dgvQuocGia').bootstrapTable(
+                    'getSelections');
+
+            });
+
+        \$('#dgvQuocGia').on('click', '.clickable-row', function (event) {
+            \$(this).addClass('active').siblings().removeClass('active');
+        });
+    };
+
+	function functionsNew(id) {
+        \$('#as_dic_${SELECTION}New .modal-subbody').load('\${request.contextPath}\${n.props.crud_uri}comm_as_dic_${SELECTION}/new?crud=ve&id=' + id, function () {
+            \$('#as_dic_${SELECTION}New').modal({show: true});
+        });
+    }
+
+    function editfunctions(id) {
+        \$('#as_dic_${SELECTION}Edit .modal-subbody').load('\${request.contextPath}\${n.props.crud_uri}comm_as_dic_${SELECTION}/edit?crud=ve&id=' + id, function () {
+            \$('#as_dic_${SELECTION}Edit').modal({show: true});
+        });
+    }
+
+    function deletefunctions(id) {
+        \$('#as_dic_${SELECTION}Delete .modal-subbody').load('\${request.contextPath}\${n.props.crud_uri}comm_as_dic_${SELECTION}/delete?crud=ve&id=' + id, function () {
+            \$('#as_dic_${SELECTION}Delete').modal({show: true});
+        });
+    }
+</script>
 ]]></content>
-    <tabTrigger>k17</tabTrigger>
-    <scope>source.js</scope>
+    <tabTrigger>k18</tabTrigger>
+    <scope>text.html(.basic)</scope>
 </snippet>
